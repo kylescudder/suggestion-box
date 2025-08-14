@@ -55,8 +55,8 @@ export function AdminDashboard({ suggestions }: AdminDashboardProps) {
   return (
     <div className="space-y-8">
       {/* Stats Overview */}
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-        <Card className="bg-white/80 backdrop-blur-sm border-emerald-200 hover:shadow-lg transition-all duration-300">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4">
+        <Card className="bg-white/80 backdrop-blur-sm border-emerald-200 hover:shadow-lg transition-all duration-300 cursor-pointer">
           <CardContent className="p-6">
             <div className="flex items-center gap-3">
               <Sparkles className="w-8 h-8 text-emerald-600" />
@@ -68,7 +68,7 @@ export function AdminDashboard({ suggestions }: AdminDashboardProps) {
           </CardContent>
         </Card>
 
-        <Card className="bg-white/80 backdrop-blur-sm border-yellow-200 hover:shadow-lg transition-all duration-300">
+        <Card className="bg-white/80 backdrop-blur-sm border-yellow-200 hover:shadow-lg transition-all duration-300 cursor-pointer">
           <CardContent className="p-6">
             <div className="flex items-center gap-3">
               <Clock className="w-8 h-8 text-yellow-600" />
@@ -80,7 +80,7 @@ export function AdminDashboard({ suggestions }: AdminDashboardProps) {
           </CardContent>
         </Card>
 
-        <Card className="bg-white/80 backdrop-blur-sm border-blue-200 hover:shadow-lg transition-all duration-300">
+        <Card className="bg-white/80 backdrop-blur-sm border-blue-200 hover:shadow-lg transition-all duration-300 cursor-pointer">
           <CardContent className="p-6">
             <div className="flex items-center gap-3">
               <Eye className="w-8 h-8 text-blue-600" />
@@ -92,7 +92,7 @@ export function AdminDashboard({ suggestions }: AdminDashboardProps) {
           </CardContent>
         </Card>
 
-        <Card className="bg-white/80 backdrop-blur-sm border-green-200 hover:shadow-lg transition-all duration-300">
+        <Card className="bg-white/80 backdrop-blur-sm border-green-200 hover:shadow-lg transition-all duration-300 cursor-pointer">
           <CardContent className="p-6">
             <div className="flex items-center gap-3">
               <CheckCircle className="w-8 h-8 text-green-600" />
@@ -104,7 +104,7 @@ export function AdminDashboard({ suggestions }: AdminDashboardProps) {
           </CardContent>
         </Card>
 
-        <Card className="bg-white/80 backdrop-blur-sm border-red-200 hover:shadow-lg transition-all duration-300">
+        <Card className="bg-white/80 backdrop-blur-sm border-red-200 hover:shadow-lg transition-all duration-300 cursor-pointer">
           <CardContent className="p-6">
             <div className="flex items-center gap-3">
               <XCircle className="w-8 h-8 text-red-600" />
@@ -119,26 +119,26 @@ export function AdminDashboard({ suggestions }: AdminDashboardProps) {
 
       {/* Filter Tabs */}
       <Tabs value={filter} onValueChange={setFilter} className="w-full">
-        <TabsList className="grid w-full grid-cols-5 bg-white/80 backdrop-blur-sm">
-          <TabsTrigger value="all" className="data-[state=active]:bg-emerald-100 data-[state=active]:text-emerald-800">
+        <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2 bg-white/80 backdrop-blur-sm h-40 sm:h-10">
+          <TabsTrigger value="all" className="data-[state=active]:bg-emerald-100 data-[state=active]:text-emerald-800 cursor-pointer">
             All ({statusCounts.all})
           </TabsTrigger>
           <TabsTrigger
             value="pending"
-            className="data-[state=active]:bg-yellow-100 data-[state=active]:text-yellow-800"
+            className="data-[state=active]:bg-yellow-100 data-[state=active]:text-yellow-800 cursor-pointer"
           >
             Pending ({statusCounts.pending})
           </TabsTrigger>
-          <TabsTrigger value="reviewed" className="data-[state=active]:bg-blue-100 data-[state=active]:text-blue-800">
+          <TabsTrigger value="reviewed" className="data-[state=active]:bg-blue-100 data-[state=active]:text-blue-800 cursor-pointer">
             Reviewed ({statusCounts.reviewed})
           </TabsTrigger>
           <TabsTrigger
             value="implemented"
-            className="data-[state=active]:bg-green-100 data-[state=active]:text-green-800"
+            className="data-[state=active]:bg-green-100 data-[state=active]:text-green-800 cursor-pointer"
           >
             Implemented ({statusCounts.implemented})
           </TabsTrigger>
-          <TabsTrigger value="rejected" className="data-[state=active]:bg-red-100 data-[state=active]:text-red-800">
+          <TabsTrigger value="rejected" className="data-[state=active]:bg-red-100 data-[state=active]:text-red-800 cursor-pointer">
             Rejected ({statusCounts.rejected})
           </TabsTrigger>
         </TabsList>
@@ -164,21 +164,30 @@ export function AdminDashboard({ suggestions }: AdminDashboardProps) {
                     className="bg-white/80 backdrop-blur-sm border-emerald-200 hover:shadow-lg transition-all duration-300 hover:scale-[1.01]"
                   >
                     <CardHeader>
-                      <div className="flex items-start justify-between gap-4">
+                      <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-3 md:gap-4">
                         <div className="flex-1">
                           <CardTitle className="font-serif text-xl text-slate-800 mb-2">{suggestion.title}</CardTitle>
-                          <div className="flex items-center gap-4 text-sm text-slate-600">
-                            {suggestion.author_name && (
+                          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-slate-600">
+                            {(!suggestion.author_name && !suggestion.author_email) ? (
                               <div className="flex items-center gap-1">
                                 <User className="w-4 h-4" />
-                                {suggestion.author_name}
+                                Anonymous
                               </div>
-                            )}
-                            {suggestion.author_email && (
-                              <div className="flex items-center gap-1">
-                                <Mail className="w-4 h-4" />
-                                {suggestion.author_email}
-                              </div>
+                            ) : (
+                              <>
+                                {suggestion.author_name && (
+                                  <div className="flex items-center gap-1">
+                                    <User className="w-4 h-4" />
+                                    {suggestion.author_name}
+                                  </div>
+                                )}
+                                {suggestion.author_email && (
+                                  <div className="flex items-center gap-1">
+                                    <Mail className="w-4 h-4" />
+                                    {suggestion.author_email}
+                                  </div>
+                                )}
+                              </>
                             )}
                             <div className="flex items-center gap-1">
                               <Calendar className="w-4 h-4" />
@@ -186,7 +195,7 @@ export function AdminDashboard({ suggestions }: AdminDashboardProps) {
                             </div>
                           </div>
                         </div>
-                        <div className="flex items-center gap-3">
+                        <div className="flex items-center gap-3 mt-2 md:mt-0">
                           <Badge className={`${statusColors[suggestion.status]} flex items-center gap-1`}>
                             <StatusIcon className="w-3 h-3" />
                             {suggestion.status}
@@ -196,14 +205,14 @@ export function AdminDashboard({ suggestions }: AdminDashboardProps) {
                     </CardHeader>
                     <CardContent>
                       <p className="text-slate-700 mb-4 leading-relaxed">{suggestion.description}</p>
-                      <div className="flex items-center gap-3">
+                      <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 mt-2 md:mt-0">
                         <span className="text-sm font-medium text-slate-600">Update Status:</span>
                         <Select
                           value={suggestion.status}
                           onValueChange={(value) => handleStatusUpdate(suggestion.id, value)}
                           disabled={updatingStatus === suggestion.id}
                         >
-                          <SelectTrigger className="w-40 border-emerald-200 focus:border-emerald-400">
+                          <SelectTrigger className="w-full md:w-40 border-emerald-200 focus:border-emerald-400">
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent>

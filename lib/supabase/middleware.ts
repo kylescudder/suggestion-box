@@ -38,7 +38,6 @@ export async function updateSession(request: NextRequest) {
   // Protected routes - redirect to login if not authenticated
   const isAuthRoute =
     request.nextUrl.pathname.startsWith("/admin/login") ||
-    request.nextUrl.pathname.startsWith("/admin/signup") || // Fixed signup route path to match actual route
     request.nextUrl.pathname === "/admin/callback"
 
   if (!isAuthRoute) {

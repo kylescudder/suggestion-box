@@ -49,7 +49,7 @@ export default async function AdminPage() {
               <Button
                 type="submit"
                 variant="outline"
-                className="border-emerald-300 text-emerald-700 hover:bg-emerald-50 transition-all duration-300 bg-transparent"
+                className="border-emerald-300 text-emerald-700 hover:bg-emerald-50 transition-all duration-300 bg-transparent cursor-pointer"
               >
                 <LogOut className="h-4 w-4 mr-2" />
                 Sign Out

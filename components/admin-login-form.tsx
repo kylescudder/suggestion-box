@@ -19,7 +19,7 @@ function SubmitButton() {
     <Button
       type="submit"
       disabled={pending}
-      className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-6 text-lg font-medium rounded-xl transition-all duration-300 hover:scale-105"
+      className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-6 text-lg font-medium rounded-xl transition-all duration-300 hover:scale-105 cursor-pointer"
     >
       {pending ? (
         <>
@@ -97,10 +97,7 @@ export function AdminLoginForm() {
             <SubmitButton />
 
             <div className="text-center text-emerald-200/80 text-sm">
-              Need an admin account?{" "}
-              <Link href="/admin/signup" className="text-emerald-300 hover:text-emerald-200 underline">
-                Create one here
-              </Link>
+              Admin accounts are provisioned via Supabase. Contact your administrator if you need access.
             </div>
           </form>
         </CardContent>
