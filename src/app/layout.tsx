@@ -18,7 +18,11 @@ const dmSans = DM_Sans({
 export const metadata: Metadata = {
   title: 'Magic Suggestion Box ✨',
   description: 'Share your spark of magic with us!',
-  generator: 'v0.app'
+  generator: 'v0.app',
+  icons: {
+    icon: [{ url: '/favicon.ico' }],
+    apple: [{ url: '/apple-icon.png' }]
+  }
 }
 
 export default function RootLayout({
